@@ -108,14 +108,14 @@ spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 10Gi
+            storage: 11Gi
     - metadata:
         name: clusterconfig
       spec:
         accessModes: [ "ReadWriteOnce" ]
         resources:
           requests:
-            storage: 10Gi
+            storage: 1Gi
 ---
 apiVersion: batch/v1
 kind: Job
