@@ -6,6 +6,7 @@ metadata:
 data:
   application.properties: |
     artConnection.ConnectedDemosTCDB.ConnectedDemosTCDB.connections.ConnectedDemoStore.connectionEnabled=true
+    wmcloudsettings.DemoTenant.password={AES}0+h+7GakZdnNSaZomW4xtg==
     healthindicators.Adapters.enabled=true
     healthindicators.Cluster.enabled=true
     healthindicators.Cluster.properties.threshold.value=2
@@ -276,7 +277,7 @@ spec:
     spec:
       containers:
         - name: "products-api"
-          image: "${REGISTRY}/products-api:1.0"
+          image: "${REGISTRY}/products-api:1.0.${BUILD_NUMBER}"
           ports:
             - containerPort: 5555
               protocol: "TCP"
