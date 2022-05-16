@@ -68,7 +68,7 @@ spec:
 		NAMESPACE = "api-first-workshop"
 		REGISTRY_INGRESS = "https://${params.REGISTRY}"
 		CONTAINER = "service-monitor-api"
-		CONTAINER_TAG = "1.0"
+		CONTAINER_TAG = "1.0.${env.BUILD_NUMBER}"
     }
 
     stages {
@@ -168,8 +168,12 @@ spec:
 
 					def object = jsonParse(response.content)
 
-					def APIID = object.apiResponse.api.id
+					def APIID = object.apiResponse.api.id[0]
 					echo "api id with apiResponse: ${APIID}"
+					
+					response = httpRequest acceptType: 'APPLICATION_JSON', customHeaders: [[name: 'Authorization', value: auth]], httpMode: 'PUT', url: "${host}/rest/apigateway/apis/${APIID}/activate", validResponseCodes: '200'
+					
+					echo "api id with ID: ${APIID} activated"
 				}
 			}
 		}

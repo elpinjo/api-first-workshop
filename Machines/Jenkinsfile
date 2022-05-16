@@ -59,7 +59,7 @@ spec:
 		NAMESPACE = "api-first-workshop"
 		REGISTRY_INGRESS = "https://${params.REGISTRY}"
 		CONTAINER = "machine-status-api"
-		CONTAINER_TAG = "1.0"
+		CONTAINER_TAG = "1.0.${env.BUILD_NUMBER}"
     }
 
     stages {
@@ -75,6 +75,10 @@ spec:
 						build/test/reports'
 					sh 'mv config build/container'
 					sh 'mv Listeners build/container'
+<<<<<<< HEAD
+=======
+					sh 'mv acls build/container'
+>>>>>>> 63467daa2497c95e756e598a8cc02dafddc3a860
 					sh 'chmod -R go+w build/test; \
 						chmod go+w test'
 					sh 'cd build/container; \
